@@ -1,0 +1,15 @@
+jobs: 500
+latency-wait: 10
+restart-times: 2
+use-conda: False
+use-singularity: True
+singularity-prefix: "/data/brinkvd/singularity/"
+singularity-args: "-B /data/brinkvd,/scratch"
+printshellcmds: True
+skip-script-cleanup: True
+cluster: "lsf_submit.py"
+cluster-status: "lsf_status.py"
+cluster-cancel: "lsf_cancel.py"
+jobscript: "lsf_jobscript.sh"
+max-jobs-per-second: 4
+max-status-checks-per-second: 10

@@ -4,7 +4,7 @@ restart-times: 2
 use-conda: False
 use-singularity: True
 singularity-prefix: "/data/brinkvd/singularity/"
-singularity-args: "-B /data/brinkvd,/scratch"
+singularity-args: "-B /data/brinkvd,/lila/data/brinkvd,/scratch"
 printshellcmds: True
 skip-script-cleanup: True
 cluster: "lsf_submit.py"

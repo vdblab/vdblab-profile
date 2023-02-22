@@ -1,10 +1,11 @@
-jobs: 500
+jobs: 50
+cores: 32
 latency-wait: 10
-restart-times: 2
+restart-times: 0
 use-conda: False
 use-singularity: True
 singularity-prefix: "/data/brinkvd/singularity/"
-singularity-args: "-B /data/brinkvd,/lila/data/brinkvd,/scratch"
+singularity-args: "-B /data/brinkvd,/lila/data/brinkvd,/scratch,$HOME"
 printshellcmds: True
 skip-script-cleanup: True
 cluster: "lsf_submit.py"

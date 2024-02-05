@@ -7,9 +7,10 @@ apptainer-args: "-B /data/brinkvd,/lila/data/brinkvd,/scratch"
 printshellcmds: True
 skip-script-cleanup: True
 executor: cluster-generic
+no-shared-fs: False
 cluster-generic-submit-cmd:  "lsf_submit.py"
 cluster-generic-status-cmd: "lsf_status.py"
-cluster-generic-cancel-cmd: "lsf_cancel.py"
+cluster-generic-cancel-cmd: "bkill"
 jobscript: "lsf_jobscript.sh"
 max-jobs-per-second: 4
 max-status-checks-per-second: 10

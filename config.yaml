@@ -3,7 +3,7 @@ latency-wait: 10
 restart-times: 0
 software-deployment-method: apptainer
 apptainer-prefix: "/data/brinkvd/singularity/"
-apptainer-args: "-B /data/brinkvd,/lila/data/brinkvd,/scratch"
+apptainer-args: "-B /data/brinkvd,/lila/data/brinkvd,/scratch,/data/peledj,/lila/data/peledj"
 printshellcmds: True
 skip-script-cleanup: True
 executor: cluster-generic

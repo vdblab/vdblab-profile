@@ -1,6 +1,6 @@
 jobs: 500
 latency-wait: 10
-restart-times: 2
+restart-times: 0
 use-conda: False
 use-singularity: True
 singularity-prefix: "/data/brinkvd/singularity/"

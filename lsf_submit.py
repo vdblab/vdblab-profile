@@ -90,11 +90,13 @@ class Submitter:
         mem_in_clusters_units = self.mem_mb.to(self.memory_units)
         mem_value_to_submit = math.ceil(mem_in_clusters_units.value)
         if self.mem_per_core:
-            mem_value_to_submit = math.ceil(mem_in_clusters_units.value/self.threads)
+            # do not round up, otherwise we can't submit jobs with fewer GB memory than cores
+            mem_value_to_submit = (mem_in_clusters_units.value/self.threads) + .1
         resources_str = (
-            "-M {mem} -n {threads} -R 'select[mem>{mem}] "
+            "-n {threads} -R 'select[mem>{mem}] "
             "rusage[mem={mem}] span[hosts=1]'".format(
-                mem=mem_value_to_submit, threads=self.threads
+                mem=mem_value_to_submit,
+                threads=self.threads
             )
         )
 

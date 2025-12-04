@@ -1,44 +1,39 @@
+#
+# Based on lsf CookieCutter.py
+#
+import os
+import json
+
+d = os.path.dirname(__file__)
+with open(os.path.join(d, "settings.json")) as fh:
+    settings = json.load(fh)
+
+
+def from_entry_or_env(values, key):
+    """Return value from ``values`` and override with environment variables."""
+    if key in os.environ:
+        return os.environ[key]
+    else:
+        return values[key]
+
+
 class CookieCutter:
-    """
-    Cookie Cutter wrapper
-    """
+
+    SBATCH_DEFAULTS = from_entry_or_env(settings, "SBATCH_DEFAULTS")
+    CLUSTER_NAME = from_entry_or_env(settings, "CLUSTER_NAME")
+    CLUSTER_CONFIG = from_entry_or_env(settings, "CLUSTER_CONFIG")
 
     @staticmethod
-    def get_default_mem_mb() -> int:
-        return int("1024")
-
-    @staticmethod
-    def get_log_dir() -> str:
-        return "logs/cluster"
-
-    @staticmethod
-    def get_default_queue() -> str:
-        return "cpuqueue"
-
-    @staticmethod
-    def get_default_project() -> str:
+    def get_cluster_option() -> str:
+        cluster = CookieCutter.CLUSTER_NAME
+        if cluster != "":
+            return f"--cluster={cluster}"
         return ""
 
     @staticmethod
-    def get_lsf_unit_for_limits() -> str:
-        return "GB"
+    def get_cluster_logpath() -> str:
+        return "logs/slurm/%r/%j"
 
     @staticmethod
-    def get_unknwn_behaviour() -> str:
-        return "wait"
-
-    @staticmethod
-    def get_zombi_behaviour() -> str:
-        return "kill"
-
-    @staticmethod
-    def get_latency_wait() -> float:
-        return float("10")
-
-    @staticmethod
-    def get_wait_between_tries() -> float:
-        return float("0.001")
-
-    @staticmethod
-    def get_max_status_checks() -> int:
-        return int("1")
+    def get_cluster_jobname() -> str:
+        return "%r_%w"

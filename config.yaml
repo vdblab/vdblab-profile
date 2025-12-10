@@ -6,19 +6,16 @@ use-singularity: True
 singularity-prefix: "/usersoftware/collab004/singularity/"
 singularity-args: "-B /usersoftware/collab004/,/data1/collab004/,/scratch/,$HOME"
 printshellcmds: True
-cluster: "slurm-submit.py"
-cluster-status: "slurm-status.py"
+cluster: "/home/watersn/GitHub/vdblab-profile/slurm-submit.py"
+cluster-status: "/home/watersn/GitHub/vdblab-profile/slurm-status.py"
 cluster-cancel: "scancel"
-jobscript: "slurm-jobscript.sh"
+jobscript: "/home/watersn/GitHub/vdblab-profile/slurm-jobscript.sh"
 max-jobs-per-second: 4
 max-status-checks-per-second: 10
 local-cores: 1
 
-# Example resource configuration
-# default-resources:
-#   - runtime=100
-#   - mem_mb=6000
-#   - disk_mb=1000000
+default-resources:
+  - slurm_partition=cpu
 # # set-threads: map rule names to threads
 # set-threads:
 #   - single_core_rule=1

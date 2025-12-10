@@ -164,7 +164,17 @@ def convert_job_properties(job_properties, resource_mapping=None):
         k = kv[0]
         v = None if len(kv) == 1 else kv[1]
         options[k.lstrip("-").replace("_", "-")] = v
+    # set partition
+    if options["mem"] > (1024*64):
+        partition = "cpu_highmem"
+    elif options["time"] < 120:
+        partition = "cpushort"
+    else:
+        partition = "cpu"
+#    if options["time"] < (4*60) and options["cpus-per-task"]  < 32:
+#        partition = partition + ",preemptable"
 
+    options["partition"] = partition
     return options
 
 

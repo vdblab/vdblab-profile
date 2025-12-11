@@ -6,10 +6,10 @@ use-singularity: True
 singularity-prefix: "/usersoftware/collab004/singularity/"
 singularity-args: "-B /usersoftware/collab004/,/data1/collab004/,/scratch/,$HOME"
 printshellcmds: True
-cluster: "/home/watersn/GitHub/vdblab-profile/slurm-submit.py"
-cluster-status: "/home/watersn/GitHub/vdblab-profile/slurm-status.py"
+cluster: "slurm-submit.py"
+cluster-status: "slurm-status.py"
 cluster-cancel: "scancel"
-jobscript: "/home/watersn/GitHub/vdblab-profile/slurm-jobscript.sh"
+jobscript: "slurm-jobscript.sh"
 max-jobs-per-second: 4
 max-status-checks-per-second: 10
 local-cores: 1

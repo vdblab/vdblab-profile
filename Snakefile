@@ -6,6 +6,7 @@ rule all:
         "cpu.txt",
         "cpu_highmem.txt",
         "cpu_preemptible.txt"
+        "cpu_highthreads.txt"
 
 rule cooljob:
     output:
@@ -33,3 +34,11 @@ use rule cooljob as cooljob_preempt with:
         mem_mb = 1 * 1024,
         runtime = 5
     output: "cpu_preemptible.txt"
+
+rule cooljob2:
+    threads: 250
+    resources:
+        mem_mb = 1 * 1024,
+        runtime = 5
+    output: "cpu_highthreads.txt"
+    shell: "sleep 5 && echo $SLURM_JOB_PARTITION >  {output}"

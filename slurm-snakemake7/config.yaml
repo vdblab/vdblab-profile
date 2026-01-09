@@ -1,0 +1,19 @@
+jobs: 500
+max-threads: 52
+latency-wait: 10
+restart-times: 0
+use-conda: False
+use-singularity: True
+singularity-prefix: "/usersoftware/collab004/singularity/"
+singularity-args: "-e -B /usersoftware/collab004/,/data1/collab004/,/scratch/,$HOME,$PWD"
+printshellcmds: True
+cluster: "slurm-submit.py"
+cluster-status: "slurm-status.py"
+cluster-cancel: "scancel"
+jobscript: "slurm-jobscript.sh"
+max-jobs-per-second: 4
+max-status-checks-per-second: 10
+local-cores: 1
+
+default-resources:
+  - slurm_partition=cpu

@@ -1,19 +1,22 @@
 jobs: 500
 max-threads: 52
 latency-wait: 10
-restart-times: 2
+restart-times: 0
 use-conda: False
-use-singularity: True
+software-deployment-method: apptainer
 singularity-prefix: "/usersoftware/collab004/singularity/"
-singularity-args: "-e -B /usersoftware/collab004/,/data1/collab004/,/scratch/,$HOME"
+singularity-args: "-e -B /usersoftware/collab004/,/data1/collab004/,/scratch/,$HOME,$PWD"
 printshellcmds: True
-cluster: "slurm-submit.py"
-cluster-status: "slurm-status.py"
-cluster-cancel: "scancel"
-jobscript: "slurm-jobscript.sh"
+# executor: cluster-generic
+# cluster-generic-submit-cmd:  "slurm_submit.py"
+# cluster-generic-status-cmd: "slurm_status.py"
+# cluster-generic-cancel-cmd: "scancel"
+# jobscript: "slurm_jobscript.sh"
+executor: slurm
 max-jobs-per-second: 4
 max-status-checks-per-second: 10
-local-cores: 1
-
 default-resources:
-  - slurm_partition=cpu
+  - 'mem_mb=max(2*input.size_mb, 1000)'
+  - 'disk_mb=max(2*input.size_mb, 1000)'
+  - 'tmpdir=system_tmpdir'
+  -  'slurm_partition=cpu'
